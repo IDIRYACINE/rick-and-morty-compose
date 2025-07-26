@@ -36,12 +36,14 @@ fun ViewHome(params: ViewHomeParams = ViewHomeParams(), viewModel: HomeViewModel
     val appState = LocalAppState.current
     val filtersViewModel = appState.filtersState
     val nameFlow = remember {
-        appState.filtersState.filters
-            .map { it.name }
-            .distinctUntilChanged()
+        appState.filtersState.filters.map { it.name }.distinctUntilChanged()
     }
 
-    val queryVal by nameFlow.collectAsState(initial = "")
+    val currentName = remember(filtersViewModel) {
+        filtersViewModel.filters.value.name
+    }
+
+    val queryVal by nameFlow.collectAsState(initial = currentName)
 
     val characters = viewModel.characters
     val gridState = rememberLazyGridState()
@@ -59,8 +61,7 @@ fun ViewHome(params: ViewHomeParams = ViewHomeParams(), viewModel: HomeViewModel
             ) {
 
                 Searchbar(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     initialValue = queryVal,
                     onValueUpdate = { it ->
                         appState.filtersState.updateFilters(
@@ -73,20 +74,14 @@ fun ViewHome(params: ViewHomeParams = ViewHomeParams(), viewModel: HomeViewModel
                     },
                     onButtonClick = {
                         appState.toggleModal()
-                    }
+                    })
+
+                CharactersLoaderHandler(viewModel, filtersViewModel, gridState)
+
+                if (!characters.isEmpty()) CharacterGrid(
+                    items = characters, modifier = Modifier.fillMaxSize(), gridState = gridState
                 )
-
-                CharactersLoaderHandler(viewModel,filtersViewModel, gridState)
-
-                if (!characters.isEmpty())
-                    CharacterGrid(
-                        items = characters,
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        gridState = gridState
-                    )
-                else
-                    EmptyGrid(modifier = Modifier.fillMaxSize())
+                else EmptyGrid(modifier = Modifier.fillMaxSize())
             }
         }
 
