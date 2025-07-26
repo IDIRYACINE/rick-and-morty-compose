@@ -4,6 +4,7 @@ import com.idir.rickandmorty.core.entity.CharacterGender
 import com.idir.rickandmorty.core.entity.CharacterStatus
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacter
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacterHeader
+import com.idir.rickandmorty.services.characters.responses.LoadCharactersApiResponse
 
 
 data class LoadCharactersParams(
@@ -30,7 +31,7 @@ data class LoadCharactersParams(
 }
 
 interface ICharacterService {
-    suspend fun loadCharacters(params:LoadCharactersParams): List<RickAndMortyCharacterHeader>
+    suspend fun loadCharacters(params:LoadCharactersParams): LoadCharactersApiResponse
     suspend fun getCharacter(id:Int): RickAndMortyCharacter?
 
 }
