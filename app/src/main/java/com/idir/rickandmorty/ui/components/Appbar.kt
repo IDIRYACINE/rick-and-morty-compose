@@ -1,0 +1,26 @@
+package com.idir.rickandmorty.ui.components
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+
+@Preview
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyAppbar() {
+
+    TopAppBar(
+        title = {
+
+        },
+        actions = {
+
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primary,
+            titleContentColor = MaterialTheme.colorScheme.onPrimary
+        )
+    )
+}
