@@ -44,11 +44,6 @@ class FiltersViewModel : ViewModel() {
         }
     }
 
-    fun updateLastFilter(newFilter: LoadCharactersParams) {
-        _lastFilter = newFilter.copy()
-    }
-
-
 
     fun updateFilters(
         name: String? = null,
