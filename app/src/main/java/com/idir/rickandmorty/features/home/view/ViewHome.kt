@@ -12,6 +12,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import com.idir.rickandmorty.features.home.hooks.CharactersLoaderHandler
 import com.idir.rickandmorty.features.home.state.HomeViewModel
 import com.idir.rickandmorty.features.home.state.LocalHomeViewModel
 import com.idir.rickandmorty.features.home.widgets.CharacterGrid
@@ -69,6 +70,7 @@ fun ViewHome(params:ViewHomeParams = ViewHomeParams(),    viewModel: HomeViewMod
                     }
                 )
 
+                CharactersLoaderHandler(viewModel,gridState)
 
                 if(!characters.isEmpty())
                     CharacterGrid(

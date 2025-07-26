@@ -21,16 +21,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.idir.rickandmorty.application.router.LocalAppRouter
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacterHeader
 
 @Composable
 fun GridItem(item: RickAndMortyCharacterHeader) {
-
+    val router = LocalAppRouter.current
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp)
-            .clickable {  }
+            .clickable {  router.goToDetails(item.id) }
             .padding(8.dp) // inner padding inside the border
     ) {
         Column(

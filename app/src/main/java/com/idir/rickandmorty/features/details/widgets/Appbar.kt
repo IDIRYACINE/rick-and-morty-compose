@@ -10,11 +10,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import com.idir.rickandmorty.application.router.LocalAppRouter
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterDetailsAppbar(){
+    val router = LocalAppRouter.current
     val colorScheme = MaterialTheme.colorScheme
 
     CenterAlignedTopAppBar(
@@ -26,7 +28,7 @@ fun CharacterDetailsAppbar(){
             )
         },
         navigationIcon = {
-            IconButton(onClick = {  }) {
+            IconButton(onClick = { router.goBack() }) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = "Back",
