@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">RickAndMorty</string>
+    <string name="app_name">Rick And Morty</string>
+    <string name="species">Species</string>
+    <string name="gender">Gender</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="apply_filters">Apply Filters</string>
+    <string name="reset_filters">Reset Filters</string>
+    <string name="status">Status</string>
+    <string name="rick_and_morty">Rick and Morty</string>
+    <string name="filters">Filters</string>
+
+
+
 </resources>
