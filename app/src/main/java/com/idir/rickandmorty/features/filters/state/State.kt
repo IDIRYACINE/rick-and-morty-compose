@@ -48,6 +48,8 @@ class FiltersViewModel : ViewModel() {
         _lastFilter = newFilter.copy()
     }
 
+
+
     fun updateFilters(
         name: String? = null,
         status: CharacterStatus? = null,

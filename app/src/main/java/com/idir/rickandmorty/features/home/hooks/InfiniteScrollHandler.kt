@@ -8,43 +8,26 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
+import com.idir.rickandmorty.features.filters.state.FiltersViewModel
 import com.idir.rickandmorty.features.home.state.HomeViewModel
-import com.idir.rickandmorty.features.state.LocalAppState
-import com.idir.rickandmorty.services.ServiceGateway
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 
 @Composable
 fun CharactersLoaderHandler(
-    viewModel: HomeViewModel,
+    homeViewModel: HomeViewModel,
+    filtersViewModel: FiltersViewModel,
     gridState: LazyGridState,
     buffer: Int = 6
 ) {
-    val filtersState = LocalAppState.current.filtersState
-    val currentFilters by filtersState.filters.collectAsState()
+    val currentFilters by filtersViewModel.filters.collectAsState()
 
-    LaunchedEffect(Unit) {
-        snapshotFlow { currentFilters }
-            .distinctUntilChanged()
-            .collectLatest { newFilter ->
-                if (filtersState.shouldLoadOnNewFilter(newFilter)) {
-                    val shouldResetPage = filtersState.shouldResetPage(newFilter)
+    LaunchedEffect(currentFilters) {
+        if (filtersViewModel.shouldLoadOnNewFilter(currentFilters)) {
+            val reset = filtersViewModel.shouldResetPage(currentFilters)
+            val filterToUse = if (reset) currentFilters.copy(page = 0) else currentFilters
 
-                    val filterToUse = if (shouldResetPage) {
-                        newFilter.copy(page = 0)
-                    } else {
-                        newFilter
-                    }
-
-                    val result = ServiceGateway.instance
-                        .getCharactersService()
-                        .loadCharacters(filterToUse)
-
-                    filtersState.updateLastFilter(filterToUse)
-                    viewModel.update(result.results, result.info, reset = shouldResetPage)
-                    viewModel.markInitialLoadComplete()
-                }
-            }
+            homeViewModel.loadCharacters(filterToUse, reset)
+        }
     }
 
     val shouldLoadMore = remember {
@@ -60,8 +43,8 @@ fun CharactersLoaderHandler(
         snapshotFlow { shouldLoadMore.value }
             .distinctUntilChanged()
             .collect { loadMore ->
-                if (loadMore && viewModel.hasLoadedInitialPage()) {
-                    filtersState.nextPage()
+                if (loadMore && homeViewModel.hasLoadedInitialPage()) {
+                    filtersViewModel.nextPage()
                 }
             }
     }

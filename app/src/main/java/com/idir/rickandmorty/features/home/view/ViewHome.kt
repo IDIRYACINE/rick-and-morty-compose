@@ -34,6 +34,7 @@ data class ViewHomeParams(
 @Composable
 fun ViewHome(params: ViewHomeParams = ViewHomeParams(), viewModel: HomeViewModel) {
     val appState = LocalAppState.current
+    val filtersViewModel = appState.filtersState
     val nameFlow = remember {
         appState.filtersState.filters
             .map { it.name }
@@ -75,7 +76,7 @@ fun ViewHome(params: ViewHomeParams = ViewHomeParams(), viewModel: HomeViewModel
                     }
                 )
 
-                CharactersLoaderHandler(viewModel, gridState)
+                CharactersLoaderHandler(viewModel,filtersViewModel, gridState)
 
                 if (!characters.isEmpty())
                     CharacterGrid(

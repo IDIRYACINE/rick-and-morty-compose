@@ -1,40 +1,43 @@
 package com.idir.rickandmorty.features.home.state
 
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacterHeader
-import com.idir.rickandmorty.services.characters.responses.PageInfo
+import com.idir.rickandmorty.core.ports.LoadCharactersParams
+import com.idir.rickandmorty.services.ServiceGateway
+import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
 
     val characters = mutableStateListOf<RickAndMortyCharacterHeader>()
-    val pageInfos = mutableStateOf(PageInfo())
     private var hasLoadedInitial = false
 
+    private var lastFilter: LoadCharactersParams? = null
 
-    fun update(
-        newChars: List<RickAndMortyCharacterHeader>,
-        newPageInfos: PageInfo,
-        reset: Boolean = false
-    ) {
+    fun loadCharacters(newFilter: LoadCharactersParams, reset: Boolean) {
+        viewModelScope.launch {
+            val result = ServiceGateway.instance
+                .getCharactersService()
+                .loadCharacters(newFilter)
 
-        if (!reset) {
-            characters.addAll(newChars)
-        } else {
-            characters.clear()
-            characters.addAll((newChars))
+            if (reset) {
+                characters.clear()
+                characters.addAll(result.results)
+            } else {
+                characters.addAll(result.results)
+            }
+
+            lastFilter = newFilter
+            hasLoadedInitial = true
         }
-        pageInfos.value = newPageInfos
     }
 
-
-    fun markInitialLoadComplete() {
-        hasLoadedInitial = true
-    }
 
     fun hasLoadedInitialPage(): Boolean = hasLoadedInitial
+
+
 
 
 }
