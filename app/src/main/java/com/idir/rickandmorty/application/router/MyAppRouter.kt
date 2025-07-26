@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.idir.rickandmorty.features.details.detailNavigation
+import com.idir.rickandmorty.features.filters.views.ModalFilters
 import com.idir.rickandmorty.features.home.homeNavigation
 
 
@@ -27,6 +28,8 @@ fun MyApp(){
                 homeNavigation(navController)
                 detailNavigation()
             }
+
+            ModalFilters()
 
 
         }
