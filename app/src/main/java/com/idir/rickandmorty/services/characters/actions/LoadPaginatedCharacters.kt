@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED", "UNUSED_PARAMETER", "UNUSED_VARIABLE", "UNUSED_EXPRESSION")
+
 package com.idir.rickandmorty.services.characters.actions
 
 import com.idir.rickandmorty.core.ports.LoadCharactersParams

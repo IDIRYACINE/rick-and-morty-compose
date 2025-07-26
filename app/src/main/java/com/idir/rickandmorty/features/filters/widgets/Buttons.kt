@@ -46,6 +46,7 @@ fun ButtonFiltersReset(){
     Button(
         onClick = {
             filtersState.updateFilters(
+                name=filtersState.filters.value.name,
                 status = null,
                 species =  null,
                 type = null,
@@ -58,6 +59,6 @@ fun ButtonFiltersReset(){
             .fillMaxWidth()
             .padding(top = 16.dp)
     ) {
-        Text("Reset Filters")
+        Text(stringResource(id = R.string.reset_filters))
     }
 }

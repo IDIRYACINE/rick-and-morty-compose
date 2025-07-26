@@ -2,7 +2,6 @@ package com.idir.rickandmorty
 
 import com.idir.rickandmorty.services.characters.responses.LoadCharactersApiResponse
 import com.idir.rickandmorty.services.mappers.GsonMapper
-import org.junit.Assert
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -29,8 +28,8 @@ class JsonToLoadCharactersApiResponse {
         val response = GsonMapper.fromJson<LoadCharactersApiResponse>(json)
 
         assertNotNull(response)
-        Assert.assertEquals(826, response?.info?.count)
-        Assert.assertEquals(42, response?.info?.pages)
+        assertEquals(826, response?.info?.count)
+        assertEquals(42, response?.info?.pages)
         assertEquals("https://rickandmortyapi.com/api/character/?page=2", response?.info?.next)
         assertNull(response?.info?.prev)
         assertTrue(response?.results?.isNotEmpty() == true)

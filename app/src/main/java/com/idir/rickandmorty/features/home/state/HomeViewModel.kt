@@ -26,10 +26,6 @@ class HomeViewModel: ViewModel() {
         pageInfos.value = newPageInfos
     }
 
-    fun resetCharacters() {
-        characters.clear()
-        hasLoadedInitial = false
-    }
 
     fun markInitialLoadComplete() {
         hasLoadedInitial = true

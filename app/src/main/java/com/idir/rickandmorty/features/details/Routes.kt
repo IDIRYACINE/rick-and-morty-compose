@@ -9,7 +9,7 @@ import com.idir.rickandmorty.features.details.view.ViewCharacterDetails
 import com.idir.rickandmorty.features.details.view.ViewCharacterDetailsParams
 
 
-fun NavGraphBuilder.detailNavigation(onBack: () -> Unit = {}) {
+fun NavGraphBuilder.detailNavigation() {
     composable(
         route = Routes.Detail.route,
         arguments = listOf(navArgument("characterId") { type = NavType.IntType })

@@ -5,7 +5,7 @@ import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 
 class NetworkClient(private val baseUrl:String = "https://rickandmortyapi.com/api" ) {
-    public val okHttpClient: OkHttpClient = OkHttpClient()
+     val okHttpClient: OkHttpClient = OkHttpClient()
 
 
 

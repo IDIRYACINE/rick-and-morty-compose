@@ -1,5 +1,6 @@
 package com.idir.rickandmorty.services.mappers
 
+import android.util.Log
 import com.google.gson.Gson
 
 object GsonMapper {
@@ -9,11 +10,9 @@ object GsonMapper {
         return try {
             gson.fromJson(json, T::class.java)
         } catch (e: Exception) {
-            null // or log/throw if you prefer
+            Log.e("ErrorCatch","$e")
+            null
         }
     }
 
-    fun toJson(obj: Any): String {
-        return gson.toJson(obj)
-    }
 }

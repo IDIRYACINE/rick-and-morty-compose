@@ -3,7 +3,6 @@ package com.idir.rickandmorty.core.ports
 import com.idir.rickandmorty.core.entity.CharacterGender
 import com.idir.rickandmorty.core.entity.CharacterStatus
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacter
-import com.idir.rickandmorty.core.entity.RickAndMortyCharacterHeader
 import com.idir.rickandmorty.services.characters.responses.LoadCharactersApiResponse
 
 

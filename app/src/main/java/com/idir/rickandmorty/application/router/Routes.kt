@@ -15,7 +15,9 @@ class Router(private val navController: NavController) {
     }
 
     fun goBack() {
-        navController.popBackStack()
+        if (navController.previousBackStackEntry != null) {
+            navController.popBackStack()
+        }
     }
 
 }

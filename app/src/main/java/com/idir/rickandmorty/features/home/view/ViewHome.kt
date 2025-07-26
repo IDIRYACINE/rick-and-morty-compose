@@ -1,3 +1,4 @@
+@file:Suppress("UNUSED", "UNUSED_PARAMETER", "UNUSED_VARIABLE", "UNUSED_EXPRESSION")
 package com.idir.rickandmorty.features.home.view
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -39,7 +40,7 @@ fun ViewHome(params:ViewHomeParams = ViewHomeParams(),    viewModel: HomeViewMod
 
     val queryVal by nameFlow.collectAsState(initial = "")
 
-    val characters = viewModel.characters;
+    val characters = viewModel.characters
     val gridState = rememberLazyGridState()
 
 
