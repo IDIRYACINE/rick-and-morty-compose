@@ -18,7 +18,8 @@ import com.idir.rickandmorty.features.home.widgets.CharacterGrid
 import com.idir.rickandmorty.features.home.widgets.EmptyGrid
 import com.idir.rickandmorty.features.state.LocalAppState
 import com.idir.rickandmorty.ui.components.Searchbar
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 
 
 data class ViewHomeParams(
@@ -29,8 +30,11 @@ data class ViewHomeParams(
 @Composable
 fun ViewHome(params:ViewHomeParams = ViewHomeParams(),    viewModel: HomeViewModel) {
     val appState = LocalAppState.current
-    val nameFlow = remember {MutableStateFlow("")}
-
+    val nameFlow = remember {
+        appState.filtersState.filters
+            .map { it.name }
+            .distinctUntilChanged()
+    }
 
     val queryVal by nameFlow.collectAsState(initial = "")
 
@@ -40,38 +44,43 @@ fun ViewHome(params:ViewHomeParams = ViewHomeParams(),    viewModel: HomeViewMod
 
     CompositionLocalProvider(LocalHomeViewModel provides viewModel) {
         Scaffold(
-        modifier = Modifier.fillMaxSize(),
-    ) { innerPadding ->
+            modifier = Modifier.fillMaxSize(),
+        ) { innerPadding ->
 
-        Column(
-            modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-        ) {
-
-                    Searchbar(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        initialValue = queryVal,
-                        onValueUpdate = {it -> },
-                        onButtonClick = {
-                            appState.toggleModal()
-                        }
-                    )
-
-
-
-            if(!characters.isEmpty())
-            CharacterGrid(
-                items = characters,
+            Column(
                 modifier = Modifier
-                    .fillMaxSize(),
-                gridState=gridState
-            )
-            else
-                EmptyGrid(modifier = Modifier.fillMaxSize())
+                    .padding(innerPadding)
+                    .fillMaxSize()
+            ) {
+
+                Searchbar(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    initialValue = queryVal,
+                    onValueUpdate = {it -> appState.filtersState.updateFilters(
+                        name=it,
+                        species = appState.filtersState.filters.value.species,
+                        gender = appState.filtersState.filters.value.gender,
+                        status = appState.filtersState.filters.value.status,
+                        type = appState.filtersState.filters.value.type
+                    )},
+                    onButtonClick = {
+                        appState.toggleModal()
+                    }
+                )
+
+
+                if(!characters.isEmpty())
+                    CharacterGrid(
+                        items = characters,
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        gridState=gridState
+                    )
+                else
+                    EmptyGrid(modifier = Modifier.fillMaxSize())
+            }
         }
-    }
 
     }
 }
