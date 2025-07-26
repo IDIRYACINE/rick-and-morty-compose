@@ -31,7 +31,7 @@ fun GridItem(item: RickAndMortyCharacterHeader) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(4.dp)
-            .clickable {  router.goToDetails(item.id) }
+            .clickable { router.goToDetails(item.id) }
             .padding(8.dp) // inner padding inside the border
     ) {
         Column(

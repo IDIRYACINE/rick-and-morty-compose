@@ -9,16 +9,16 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun CharacterDetailsLoader(viewModel: CharacterDetailViewModel,id:Int){
+fun CharacterDetailsLoader(viewModel: CharacterDetailViewModel, id: Int) {
 
-        LaunchedEffect(id) {
-            viewModel.viewModelScope.launch {
-                val result = ServiceGateway.instance
-                    .getCharactersService()
-                    .getCharacter(id)
+    LaunchedEffect(id) {
+        viewModel.viewModelScope.launch {
+            val result = ServiceGateway.instance
+                .getCharactersService()
+                .getCharacter(id)
 
-                viewModel.update(result)
-            }
+            viewModel.update(result)
+        }
 
     }
 }

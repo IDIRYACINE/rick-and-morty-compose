@@ -1,4 +1,5 @@
 package com.idir.rickandmorty.ui.components.fields.search
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close

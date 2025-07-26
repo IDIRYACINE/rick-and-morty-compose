@@ -7,6 +7,6 @@ class LoadCharacterApiQueryParams {
         const val SPECIES = "species"
         const val TYPE = "type"
         const val GENDER = "gender"
-        const val PAGE ="page"
+        const val PAGE = "page"
     }
 }

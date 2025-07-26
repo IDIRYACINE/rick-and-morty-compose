@@ -1,4 +1,5 @@
 package com.idir.rickandmorty.features.home.widgets
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,12 +21,13 @@ import com.idir.rickandmorty.core.mocks.mockCharacterHeaderList
 
 
 @Composable
-fun CharacterGrid(items: List<RickAndMortyCharacterHeader>,
-                  modifier:Modifier=Modifier,
-                  gridState: LazyGridState
-                  ) {
+fun CharacterGrid(
+    items: List<RickAndMortyCharacterHeader>,
+    modifier: Modifier = Modifier,
+    gridState: LazyGridState
+) {
     val breakpoint = getWindowBreakpoint()
-    val gridCells = if (breakpoint == WindowBreakpoint.Compact)  1 else  2
+    val gridCells = if (breakpoint == WindowBreakpoint.Compact) 1 else 2
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(gridCells),

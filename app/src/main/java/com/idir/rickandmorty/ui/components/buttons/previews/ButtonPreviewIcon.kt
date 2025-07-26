@@ -1,4 +1,5 @@
 package com.idir.rickandmorty.ui.components.buttons.previews
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.material.icons.Icons
@@ -25,8 +26,6 @@ fun ButtonIconPreview() {
     )
 
     ButtonIcon(
-        icon = Icons.Default.Star,
-        contentDescription = "Star",
-        params = params
+        icon = Icons.Default.Star, contentDescription = "Star", params = params
     )
 }

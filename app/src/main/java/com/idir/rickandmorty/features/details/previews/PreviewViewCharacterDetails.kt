@@ -7,7 +7,7 @@ import com.idir.rickandmorty.features.details.view.ViewCharacterDetailsParams
 
 @Preview
 @Composable
-fun PreviewViewCharacterDetails(){
+fun PreviewViewCharacterDetails() {
 
     ViewCharacterDetails(ViewCharacterDetailsParams())
 }

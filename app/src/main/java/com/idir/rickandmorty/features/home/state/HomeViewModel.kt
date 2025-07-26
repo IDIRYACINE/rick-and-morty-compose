@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacterHeader
 import com.idir.rickandmorty.services.characters.responses.PageInfo
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel : ViewModel() {
 
 
     val characters = mutableStateListOf<RickAndMortyCharacterHeader>()
@@ -14,12 +14,15 @@ class HomeViewModel: ViewModel() {
     private var hasLoadedInitial = false
 
 
-    fun update(newChars:List<RickAndMortyCharacterHeader>,newPageInfos:PageInfo,reset:Boolean=false){
+    fun update(
+        newChars: List<RickAndMortyCharacterHeader>,
+        newPageInfos: PageInfo,
+        reset: Boolean = false
+    ) {
 
-        if(!reset) {
+        if (!reset) {
             characters.addAll(newChars)
-        }
-        else{
+        } else {
             characters.clear()
             characters.addAll((newChars))
         }

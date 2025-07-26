@@ -24,8 +24,9 @@ fun StatusSelector(
     var selectedStatus by remember { mutableStateOf(selected) }
 
     Box {
-        OutlinedButton(onClick = { expanded = true },modifier = Modifier.fillMaxWidth()) {
-            Text(text = selectedStatus?.toString()?.replaceFirstChar { it.uppercase() } ?: "Select Status")
+        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = selectedStatus?.toString()?.replaceFirstChar { it.uppercase() }
+                ?: "Select Status")
         }
 
         DropdownMenu(

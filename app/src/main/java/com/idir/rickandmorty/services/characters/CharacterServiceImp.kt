@@ -27,9 +27,7 @@ class CharacterServiceImp(private val networkClient: NetworkClient) : ICharacter
 
         val reqUrl = urlWithParams.build()
 
-        val request = Request.Builder()
-            .url(reqUrl)
-            .build()
+        val request = Request.Builder().url(reqUrl).build()
 
         return withContext(Dispatchers.IO) {
             var parsedResponse: LoadCharactersApiResponse = LoadCharactersApiResponse.empty()
@@ -59,9 +57,7 @@ class CharacterServiceImp(private val networkClient: NetworkClient) : ICharacter
     override suspend fun getCharacter(id: Int): RickAndMortyCharacter? {
         val reqUrl = networkClient.apiLoadCharacterDetailsUrl(id)
 
-        val request = Request.Builder()
-            .url(reqUrl)
-            .build()
+        val request = Request.Builder().url(reqUrl).build()
 
         return withContext(Dispatchers.IO) {
             var parsedCharacter: RickAndMortyCharacter? = null

@@ -1,4 +1,5 @@
 package com.idir.rickandmorty.application.responsive
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalWindowInfo
 

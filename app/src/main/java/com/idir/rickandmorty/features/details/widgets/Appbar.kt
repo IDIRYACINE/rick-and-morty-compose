@@ -15,7 +15,7 @@ import com.idir.rickandmorty.application.router.LocalAppRouter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterDetailsAppbar(){
+fun CharacterDetailsAppbar() {
     val router = LocalAppRouter.current
     val colorScheme = MaterialTheme.colorScheme
 

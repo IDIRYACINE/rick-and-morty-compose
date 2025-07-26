@@ -1,5 +1,7 @@
 @file:Suppress("UNUSED", "UNUSED_PARAMETER", "UNUSED_VARIABLE", "UNUSED_EXPRESSION")
+
 package com.idir.rickandmorty.features.home.view
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,7 +32,7 @@ data class ViewHomeParams(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ViewHome(params:ViewHomeParams = ViewHomeParams(),    viewModel: HomeViewModel) {
+fun ViewHome(params: ViewHomeParams = ViewHomeParams(), viewModel: HomeViewModel) {
     val appState = LocalAppState.current
     val nameFlow = remember {
         appState.filtersState.filters
@@ -59,26 +61,28 @@ fun ViewHome(params:ViewHomeParams = ViewHomeParams(),    viewModel: HomeViewMod
                     modifier = Modifier
                         .fillMaxWidth(),
                     initialValue = queryVal,
-                    onValueUpdate = {it -> appState.filtersState.updateFilters(
-                        name=it,
-                        species = appState.filtersState.filters.value.species,
-                        gender = appState.filtersState.filters.value.gender,
-                        status = appState.filtersState.filters.value.status,
-                        type = appState.filtersState.filters.value.type
-                    )},
+                    onValueUpdate = { it ->
+                        appState.filtersState.updateFilters(
+                            name = it,
+                            species = appState.filtersState.filters.value.species,
+                            gender = appState.filtersState.filters.value.gender,
+                            status = appState.filtersState.filters.value.status,
+                            type = appState.filtersState.filters.value.type
+                        )
+                    },
                     onButtonClick = {
                         appState.toggleModal()
                     }
                 )
 
-                CharactersLoaderHandler(viewModel,gridState)
+                CharactersLoaderHandler(viewModel, gridState)
 
-                if(!characters.isEmpty())
+                if (!characters.isEmpty())
                     CharacterGrid(
                         items = characters,
                         modifier = Modifier
                             .fillMaxSize(),
-                        gridState=gridState
+                        gridState = gridState
                     )
                 else
                     EmptyGrid(modifier = Modifier.fillMaxSize())

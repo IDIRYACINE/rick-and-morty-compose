@@ -1,4 +1,5 @@
 package com.idir.rickandmorty.features.filters.views
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -33,11 +34,11 @@ import com.idir.rickandmorty.features.state.LocalAppState
 
 
 @Composable
-fun ModalFilters(){
+fun ModalFilters() {
 
     val appState = LocalAppState.current
     val state = LocalAppState.current.modalState.collectAsState()
-    val updatedFilters = remember{ mutableStateOf(LoadCharactersParams() ) }
+    val updatedFilters = remember { mutableStateOf(LoadCharactersParams()) }
     val filterState by appState.filtersState.filters.collectAsState()
 
     if (!state.value.isOpen) return
@@ -65,28 +66,32 @@ fun ModalFilters(){
         ) {
             StatusSelector(
                 selected = filterState.status,
-                onChanged = {it-> updatedFilters.value= updatedFilters.value.copy(status=it)})
+                onChanged = { it -> updatedFilters.value = updatedFilters.value.copy(status = it) })
             Spacer(Modifier.height(8.dp))
             GenderSelector(
                 selected = filterState.gender,
-                onChanged = {it-> updatedFilters.value= updatedFilters.value.copy(gender=it)})
+                onChanged = { it -> updatedFilters.value = updatedFilters.value.copy(gender = it) })
             Spacer(Modifier.height(8.dp))
             FieldFilter(
-                label= stringResource(id = R.string.species),
-                initialValue= filterState.species,
+                label = stringResource(id = R.string.species),
+                initialValue = filterState.species,
                 params = FieldFilterParams(
                     placeholder = stringResource(id = R.string.species),
-                    onSearch = {it-> updatedFilters.value= updatedFilters.value.copy(species =it)})
-                )
+                    onSearch = { it ->
+                        updatedFilters.value = updatedFilters.value.copy(species = it)
+                    })
+            )
 
             Spacer(Modifier.height(8.dp))
             FieldFilter(
                 label = stringResource(id = R.string.type),
-                initialValue= filterState.type,
+                initialValue = filterState.type,
                 params = FieldFilterParams(
                     placeholder = stringResource(id = R.string.type),
-                    onSearch = {it-> updatedFilters.value= updatedFilters.value.copy(type =it)})
-                )
+                    onSearch = { it ->
+                        updatedFilters.value = updatedFilters.value.copy(type = it)
+                    })
+            )
 
             Spacer(Modifier.height(8.dp))
             ButtonFiltersApply(updatedFilters.value)

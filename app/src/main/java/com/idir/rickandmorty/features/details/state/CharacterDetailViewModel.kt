@@ -6,11 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.idir.rickandmorty.core.entity.RickAndMortyCharacter
 
 
-class CharacterDetailViewModel: ViewModel(){
+class CharacterDetailViewModel : ViewModel() {
     val character: MutableState<RickAndMortyCharacter?> = mutableStateOf(null)
 
 
-    fun update(newCharacter: RickAndMortyCharacter?){
+    fun update(newCharacter: RickAndMortyCharacter?) {
         character.value = newCharacter
     }
 

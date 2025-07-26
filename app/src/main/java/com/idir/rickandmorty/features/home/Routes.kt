@@ -8,6 +8,7 @@ import com.idir.rickandmorty.application.router.Routes
 import com.idir.rickandmorty.features.home.state.HomeViewModel
 import com.idir.rickandmorty.features.home.view.ViewHome
 import com.idir.rickandmorty.features.home.view.ViewHomeParams
+
 fun NavGraphBuilder.homeNavigation(navController: NavController) {
     composable(Routes.Home.route) { backStackEntry ->
         val viewModel: HomeViewModel = viewModel(backStackEntry)

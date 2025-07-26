@@ -10,5 +10,5 @@ data class FieldSearchParams(
     val debounceMillis: Long = 500L,
     val leadingIcon: ImageVector = Icons.Default.Search,
     val onSearch: (String) -> Unit,
-    val colors: TextFieldColors? =null
+    val colors: TextFieldColors? = null
 )

@@ -1,4 +1,5 @@
 package com.idir.rickandmorty.features.filters.widgets
+
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -21,7 +22,7 @@ fun ButtonFiltersApply(params: LoadCharactersParams) {
         onClick = {
             modalState.toggleModal(false)
             filtersState.updateFilters(
-                name= filtersState.filters.value.name,
+                name = filtersState.filters.value.name,
                 species = params.species,
                 type = params.type,
                 gender = params.gender,
@@ -37,18 +38,17 @@ fun ButtonFiltersApply(params: LoadCharactersParams) {
 }
 
 
-
 @Composable
-fun ButtonFiltersReset(){
+fun ButtonFiltersReset() {
     val filtersState = LocalAppState.current.filtersState
     val modalState = LocalAppState.current
 
     Button(
         onClick = {
             filtersState.updateFilters(
-                name=filtersState.filters.value.name,
+                name = filtersState.filters.value.name,
                 status = null,
-                species =  null,
+                species = null,
                 type = null,
                 gender = null,
             )

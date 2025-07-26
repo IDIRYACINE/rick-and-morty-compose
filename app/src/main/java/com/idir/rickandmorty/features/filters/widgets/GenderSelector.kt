@@ -25,8 +25,9 @@ fun GenderSelector(
     var selectedGender by remember { mutableStateOf(selected) }
 
     Box {
-        OutlinedButton(onClick = { expanded = true },modifier = Modifier.fillMaxWidth()) {
-            Text(text = selectedGender?.toString()?.replaceFirstChar { it.uppercase() } ?: "Select Gender")
+        OutlinedButton(onClick = { expanded = true }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = selectedGender?.toString()?.replaceFirstChar { it.uppercase() }
+                ?: "Select Gender")
         }
 
         DropdownMenu(

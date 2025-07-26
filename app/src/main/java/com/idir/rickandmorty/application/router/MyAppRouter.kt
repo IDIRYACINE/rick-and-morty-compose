@@ -14,11 +14,11 @@ import com.idir.rickandmorty.features.home.homeNavigation
 
 
 @Composable
-fun MyApp(){
+fun MyApp() {
     val navController = rememberNavController()
     val router = remember(navController) { Router(navController) }
 
-    CompositionLocalProvider(LocalAppRouter provides router){
+    CompositionLocalProvider(LocalAppRouter provides router) {
         Box(modifier = Modifier.fillMaxSize()) {
             NavHost(
                 navController = navController,

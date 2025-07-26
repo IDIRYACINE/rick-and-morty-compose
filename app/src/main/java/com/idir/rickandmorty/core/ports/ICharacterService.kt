@@ -8,14 +8,14 @@ import com.idir.rickandmorty.services.characters.responses.LoadCharactersApiResp
 
 data class LoadCharactersParams(
     val reverse: Boolean = false,
-    val pageSize:Int = 20,
-    val page:Int = 0,
+    val pageSize: Int = 20,
+    val page: Int = 0,
     val name: String? = null,
     val status: CharacterStatus? = null,
     val species: String? = null,
     val type: String? = null,
     val gender: CharacterGender? = null
-){
+) {
     fun shouldResetPage(other: LoadCharactersParams?): Boolean {
         if (other == null) return true
 
@@ -30,7 +30,7 @@ data class LoadCharactersParams(
 }
 
 interface ICharacterService {
-    suspend fun loadCharacters(params:LoadCharactersParams): LoadCharactersApiResponse
-    suspend fun getCharacter(id:Int): RickAndMortyCharacter?
+    suspend fun loadCharacters(params: LoadCharactersParams): LoadCharactersApiResponse
+    suspend fun getCharacter(id: Int): RickAndMortyCharacter?
 
 }

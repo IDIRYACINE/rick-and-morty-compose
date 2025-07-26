@@ -10,7 +10,7 @@ fun rangeToString(x: Int, m: Int): String {
 }
 
 
-fun loadPaginatedCharacters(params: LoadCharactersParams, urlBuilder: HttpUrl.Builder){
+fun loadPaginatedCharacters(params: LoadCharactersParams, urlBuilder: HttpUrl.Builder) {
     val start = params.page
     val end = if (params.reverse) start - params.pageSize else start + params.pageSize
 

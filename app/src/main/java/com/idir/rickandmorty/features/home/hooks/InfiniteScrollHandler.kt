@@ -13,6 +13,7 @@ import com.idir.rickandmorty.features.state.LocalAppState
 import com.idir.rickandmorty.services.ServiceGateway
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+
 @Composable
 fun CharactersLoaderHandler(
     viewModel: HomeViewModel,

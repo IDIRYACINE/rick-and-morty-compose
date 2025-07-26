@@ -12,7 +12,7 @@ class AppStateViewModel : ViewModel() {
     val modalState = MutableStateFlow(ModalState())
 
 
-    fun toggleModal(toggle:Boolean = true) {
+    fun toggleModal(toggle: Boolean = true) {
         modalState.update { current ->
             current.copy(isOpen = toggle)
         }

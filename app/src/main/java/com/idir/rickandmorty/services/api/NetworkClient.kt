@@ -4,12 +4,8 @@ import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 
-class NetworkClient(private val baseUrl:String = "https://rickandmortyapi.com/api" ) {
-     val okHttpClient: OkHttpClient = OkHttpClient()
-
-
-
-
+class NetworkClient(private val baseUrl: String = "https://rickandmortyapi.com/api") {
+    val okHttpClient: OkHttpClient = OkHttpClient()
 
 
     fun apiLoadCharactersPageUrl(): HttpUrl {
@@ -21,7 +17,6 @@ class NetworkClient(private val baseUrl:String = "https://rickandmortyapi.com/ap
         return "$baseUrl/character/$id".toHttpUrlOrNull()
             ?: throw IllegalArgumentException("Invalid URL")
     }
-
 
 
 }

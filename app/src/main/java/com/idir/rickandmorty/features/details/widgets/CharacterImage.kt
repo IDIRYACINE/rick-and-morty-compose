@@ -17,7 +17,7 @@ import com.idir.rickandmorty.R
 
 
 @Composable
-fun CharacterImage(imageUrl:String){
+fun CharacterImage(imageUrl: String) {
     SubcomposeAsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(imageUrl)

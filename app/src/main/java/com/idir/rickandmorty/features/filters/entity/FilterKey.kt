@@ -12,8 +12,8 @@ data class FilterKey(
     val species: String?,
     val type: String?,
     val gender: CharacterGender?,
-    val filterApplied:Boolean = false
-){
+    val filterApplied: Boolean = false
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is FilterKey) return false

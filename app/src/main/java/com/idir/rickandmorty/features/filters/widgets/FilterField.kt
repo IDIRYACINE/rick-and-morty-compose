@@ -21,19 +21,19 @@ data class FieldFilterParams(
     val placeholder: String = "Search...",
     val debounceMillis: Long = 500L,
     val onSearch: (String) -> Unit,
-    val colors: TextFieldColors? =null
+    val colors: TextFieldColors? = null
 )
 
 @Composable
 fun FieldFilter(
     modifier: Modifier = Modifier,
-    label:String = "Label",
+    label: String = "Label",
     params: FieldFilterParams,
-    initialValue:String? =null
+    initialValue: String? = null
 ) {
     val coroutineScope = rememberCoroutineScope()
     var debounceJob by remember { mutableStateOf<Job?>(null) }
-    val myVal = remember { mutableStateOf(initialValue?:"") }
+    val myVal = remember { mutableStateOf(initialValue ?: "") }
 
     OutlinedTextField(
         label = { Text(label) },

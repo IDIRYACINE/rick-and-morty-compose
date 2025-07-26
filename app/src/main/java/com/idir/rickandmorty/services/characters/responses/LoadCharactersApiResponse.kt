@@ -5,7 +5,7 @@ import com.idir.rickandmorty.core.entity.RickAndMortyCharacterHeader
 data class PageInfo(
     val count: Int = 1,
     val pages: Int = 1,
-    val next: String? = null ,
+    val next: String? = null,
     val prev: String? = null
 )
 
